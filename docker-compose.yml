@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  app-back:
+    container_name: app-back
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - db-serve
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=db-serve
+      - DB_PORT=3308
+      - DB_USER=app_back
+      - DB_PASSWORD=my-secret-pw
+      - DB_NAME=app_back
+    depends_on:
+      - db-serve
+  db-serve:
+    container_name: db-serve
+    image: mysql:8.4.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=app_back
+      - MYSQL_USER=app_back
+      - MYSQL_PASSWORD=my-secret-pw
+    ports:
+      - "3308:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+volumes:
+  db-data:
