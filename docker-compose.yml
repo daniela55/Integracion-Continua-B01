@@ -7,28 +7,28 @@ services:
     ports:
       - "3000:3000"
     links:
-      - db-serve
+      - dbserve
     environment:
       - NODE_ENV=production
       - PORT=3000
-      - DB_HOST=db-serve
+      - DB_HOST=dbserve
       - DB_PORT=3308
       - DB_USER=app_back
-      - DB_PASSWORD=my-secret-pw
+      - DB_PASSWORD=appback
       - DB_NAME=app_back
     depends_on:
-      - db-serve
-  db-serve:
-    container_name: db-serve
+      - dbserve
+  dbserve:
+    container_name: dbserve
     image: mysql:8.4.0
     environment:
-      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=app_back
       - MYSQL_USER=app_back
-      - MYSQL_PASSWORD=my-secret-pw
+      - MYSQL_PASSWORD=appback
     ports:
       - "3308:3306"
     volumes:
-      - db-data:/var/lib/mysql
+      - db-data-test12:/var/lib/mysql
 volumes:
-  db-data:
+  db-data-test12:
