@@ -34,7 +34,7 @@ $ npm install
 ```bash
 
 ```
-## Running the app with Docker EDIT 2
+## Running the app with Docker
 ```bash
 
 $ docker compose build
