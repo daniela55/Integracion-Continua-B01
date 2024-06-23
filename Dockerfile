@@ -7,6 +7,7 @@ FROM node:18-alpine AS development
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
+RUN chmod -R 777 /usr/src/app
 
 # Copy package.json and package-lock.json to install dependencies
 COPY --chown=node:node package*.json ./
